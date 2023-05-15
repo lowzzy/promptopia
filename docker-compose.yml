@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     tty: true
     ports:
-      - '5173:5173'
+      - '8000:8000'
     volumes:
       - ./frontend:/frontend
   backend:
