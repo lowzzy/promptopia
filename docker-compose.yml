@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./frontend:/frontend
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - '3000:3000'
+      - '5555:5555'
+    volumes:
+      - ./backend:/backend
+    depends_on:
+      - mysql
+    env_file:
+      - ./backend/prisma/.env
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: develop
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./backend/prisma/data:/var/lib/mysql
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - 9090:9000
+      - 33023:33023
+    environment:
+      - MINIO_ROOT_USER=root
+      - MINIO_ROOT_PASSWORD=password
+    entrypoint: sh
+    command: -c "
+      mkdir -p /data/.minio.sys/buckets;
+      /opt/bin/minio server /data --console-address :33023;"
+    volumes:
+      - ./backend/minio:/data
