@@ -1,6 +1,23 @@
 <template>
   <div class="chat-list">
-    <chat-list-item></chat-list-item>
+    <chat-list-item
+      :is-gpt="true"
+      :chat-content="'にゃあああですにゃあああですにゃあああですにゃあああですにゃあああですにゃあああですにゃあああですにゃあああですにゃあああです'"
+      class="chat-list__item"
+    >
+    </chat-list-item>
+    <chat-list-item
+      :is-gpt="false"
+      :chat-content="'にゃあああです'"
+      class="chat-list__item"
+    >
+    </chat-list-item>
+    <chat-list-item
+      :is-gpt="true"
+      :chat-content="'にゃあああです'"
+      class="chat-list__item"
+    >
+    </chat-list-item>
   </div>
 </template>
 
@@ -23,8 +40,7 @@ export default defineComponent({
 .chat-list {
   width: 100%;
   height: 100%;
-  background-color: #aee2d0;
-  &__container {
+  &__item {
     width: 100%;
   }
 }
