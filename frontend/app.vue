@@ -6,4 +6,12 @@
   </div>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts">
+import './assets/css/style.css';
+</script>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+</style>
