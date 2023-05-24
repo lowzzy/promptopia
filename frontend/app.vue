@@ -6,9 +6,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import './assets/css/style.css';
-</script>
+<script lang="ts"></script>
 <style>
 body {
   margin: 0;
