@@ -2,7 +2,7 @@
   <div class="home">
     <div class="home__container">
       <div class="home__container__left">
-        <Calendar class="home__container__left__calender" />
+        <Calendar borderless class="home__container__left__calender" />
       </div>
       <div class="home__container__right">
         <chat-area class="home__container__right__chat-area" />
@@ -15,7 +15,6 @@
 import { defineComponent } from 'vue';
 import { Calendar } from 'v-calendar';
 import 'v-calendar/style.css';
-import '@/assets/css/style.css';
 
 export default defineComponent({
   components: {
@@ -42,10 +41,11 @@ export default defineComponent({
     align-items: center;
     &__left {
       height: 100%;
-      width: 30%;
-      padding: 0 1rem;
+      width: 34%;
       &__calender {
+        padding: 0 1rem;
         width: 100%;
+        border-bottom: 1px solid black;
       }
     }
     &__right {

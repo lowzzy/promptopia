@@ -5,18 +5,25 @@
       placeholder="メッセージを入力"
       type="text"
     />
-    <button class="chat-input__button">送信</button>
+    <button class="chat-input__button">
+      <font-awesome-icon
+        class="chat-input__button__icon"
+        :class="{ red: inputText.length > 0 }"
+        :icon="['fas', 'paper-plane']"
+      />
+    </button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import '@/assets/css/style.css';
 
 export default defineComponent({
   components: {},
   data() {
-    return {};
+    return {
+      inputText: 'eee',
+    };
   },
   props: {},
   computed: {},
@@ -32,15 +39,27 @@ export default defineComponent({
   justify-content: space-around;
   align-items: center;
   &__input {
-    border-radius: 10px;
+    border-radius: 20px;
     height: 38px;
+    padding: 0 1rem;
+    margin-left: 1rem;
     width: calc(100% - 72px);
-    background-color: #d9d9d9;
+    background-color: lightgray;
+    border: none;
   }
   &__button {
     height: 42px;
     width: 48px;
     border-radius: 10px;
+    border: none;
+    background-color: white;
+    &__icon {
+      width: 26px;
+      height: 26px;
+      &.red {
+        color: red;
+      }
+    }
   }
 }
 </style>

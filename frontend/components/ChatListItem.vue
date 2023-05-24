@@ -11,7 +11,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import '@/assets/css/style.css';
 
 export default defineComponent({
   components: {},
@@ -49,9 +48,9 @@ export default defineComponent({
   }
   &__profile {
     border-radius: 50%;
-    border: 1px solid #333;
-    width: 50px;
-    height: 50px;
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
     margin: 10px;
     &.is-gpt {
       margin-right: 6px;
@@ -62,7 +61,6 @@ export default defineComponent({
   }
   &__container {
     max-width: 80%;
-    background-color: red;
     width: fit-content;
     padding: 0.2rem 0.5rem;
     border-radius: 16px;
