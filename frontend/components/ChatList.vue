@@ -23,7 +23,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import '@/assets/css/style.css';
 
 export default defineComponent({
   components: {},
