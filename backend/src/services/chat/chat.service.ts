@@ -1,26 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { ItemDto } from './item.dto';
+import { ChatDto } from './chat.dto';
 
 @Injectable()
-export class ItemService {
+export class ChatService {
   constructor(private prisma: PrismaService) {}
 
   async findAll() {
-    const items = await this.prisma.item.findMany();
+    const chats = await this.prisma.chat.findMany();
 
-    return items.map((item) => new ItemDto(item));
+    return chats.map((chat) => new ChatDto(chat));
   }
 
   async findById(id: number) {
-    const item = await this.prisma.item.findFirst({
+    const chat = await this.prisma.chat.findFirst({
       where: { id },
     });
 
-    if (!item) {
+    if (!chat) {
       return null;
     }
 
-    return new ItemDto(item);
+    return new ChatDto(chat);
   }
 }

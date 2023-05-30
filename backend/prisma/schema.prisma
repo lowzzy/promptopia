@@ -1,33 +1,41 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
-
-  // https://github.com/prisma/prisma-client-js/issues/616#issuecomment-616107821
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "darwin", "debian-openssl-1.1.x"]
-}
-
-model Item {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  account   Account  @relation(fields: [accountId], references: [id])
-  accountId Int
-}
-
-model Account {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  avatarUrl String?
-  Item      Item[]
 }
 
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Diary {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  entryDate DateTime @default(now())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  Chat      Chat[]
+
+  @@index([userId], map: "Diary_userId_fkey")
+}
+
+model Chat {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  diaryId   Int
+  isUser    Boolean  @default(false)
+  content   String?
+  diary     Diary    @relation(fields: [diaryId], references: [id])
+
+  @@index([diaryId], map: "Chat_diaryId_fkey")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  avatarUrl String?
+  Diary     Diary[]
 }
